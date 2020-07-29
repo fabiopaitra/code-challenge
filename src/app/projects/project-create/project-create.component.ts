@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { Project, Task } from '../project.model';
+import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ProjectsService } from '../projects.service';
 
 
 @Component({
@@ -10,20 +10,12 @@ import { NgForm } from '@angular/forms';
 })
 
 export class ProjectCreateComponent {
-  enteredProject: string;
-  @Output() projectCreated = new EventEmitter<Project>();
+  constructor(public projectsService: ProjectsService) { }
 
   onAddProject = (form: NgForm) => {
     if (form.invalid) return;
-    const project: Project = {
-      projectName: form.value.projectName,
-      startDate: new Date(),
-      tasksList: []
-    };
-    this.projectCreated.emit(project);
+    this.projectsService.addProjects(form.value.projectName);
     form.resetForm();
 
   };
-
-
 }

@@ -1,7 +1,7 @@
 mat-card.container(*ngFor='let project of projects; index as i;')
   mat-card-title {{ project.projectName }}
   mat-card-content
-    mat-selection-list(fxLayout='row wrap', *ngFor='let task of project.tasksList; index as idx')
+    mat-selection-list(fxLayout='row wrap', *ngFor='let task of project.tasksList')
       mat-list-option(fxFlex) {{ task.taskName }}
       mat-action-row(fxLayout='row')
         button.box(mat-mini-fab, color='secondary')
@@ -17,5 +17,5 @@ mat-card.container(*ngFor='let project of projects; index as i;')
         nav.buttons(fxLayout='row' fxLayout.xs='row wrap')
           button.box(mat-mini-fab, color='primary', type='submit')
             mat-icon add
-         
+        
 
