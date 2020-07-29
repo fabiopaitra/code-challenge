@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Project } from '../project.model';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'project-list',
@@ -9,14 +10,15 @@ import { Project } from '../project.model';
 
 export class ProjectListComponent {
   @Input() projects: Project[] = [];
-  enteredTask: string;
 
-  onAddTask = (i: number): void => {
+  onAddTask = (form: NgForm, i: number): void => {
+    if (form.invalid) return;
     const task = {
-      taskName: this.enteredTask,
+      taskName: form.value.taskName,
       startDate: new Date()
     };
     this.projects[i].tasksList.push(task);
+    form.resetForm();
 
   };
 }

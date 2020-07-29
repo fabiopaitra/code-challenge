@@ -1,5 +1,6 @@
-.container 
-  mat-form-field(fxLayout='column' fxFlex=100)
+form.container((submit)='onAddProject(projectForm)' #projectForm='ngForm')
+  mat-form-field(fxLayout='column')
     mat-label Add a new project
-    input(matInput, [(ngModel)]='enteredProject', placeholder='Start typing...')    
-button(mat-raised-button, color='primary', (click)='onAddProject()') Add project
+    input(matInput, type='text', name='projectName', ngModel, #title='ngModel' required, placeholder='Start typing...')  
+    mat-error(*ngIf='title.invalid') Please add a project name  
+  button.section(mat-raised-button, color='primary', type='submit') Add project
