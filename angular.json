@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
-  "newProjectRoot": "projects",
+  // "newProjectRoot": "projects",
   "projects": {
     "code-challenge": {
       "projectType": "application",
@@ -19,7 +19,6 @@
           "options": {
             "outputPath": "dist/code-challenge",
             "index": "src/index.html",
-            "href": "./",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",

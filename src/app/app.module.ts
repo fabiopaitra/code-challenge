@@ -18,10 +18,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { MainComponent } from './main/main.component';
+import { ProjectCreateComponent } from './projects/project-create/project-create.component';
+import { ProjectListComponent } from './projects/project-list/project-list.component';
 
 @NgModule({
   declarations: [
-    AppComponent, HeaderComponent, MainComponent
+    AppComponent,
+    HeaderComponent,
+    MainComponent,
+    ProjectCreateComponent,
+    ProjectListComponent
   ],
   imports: [
     FlexLayoutModule,

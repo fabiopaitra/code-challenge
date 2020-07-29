@@ -1,0 +1,5 @@
+.container 
+  mat-form-field(fxLayout='column' fxFlex=100)
+    mat-label Add a new project
+    input(matInput, [(ngModel)]='enteredProject', placeholder='Start typing...')    
+button(mat-raised-button, color='primary', (click)='onAddProject()') Add project

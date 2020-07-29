@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Project } from '../projects/project.model';
 
 @Component({
   selector: 'app-main',
@@ -6,27 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./main.component.sass']
 })
 export class MainComponent {
-  projects = [];
+  projectsList: Project[] = [];
 
-  onDeleteTask = (task, taskList): void => {
-    const updatedList = taskList.filter(item => task !== item);
-    console.log(updatedList);
-    console.log(this.projects);
-    taskList = updatedList;
-  };
-  onAddTask = (newTask: { value: string; }, project: { taskList: string[]; }): void => {
-    if (newTask.value) {
-      project.taskList.push(newTask.value);
-    }
-    newTask.value = '';
-  };
-  onAddProject = (newProject: { value: string; }): void => {
-    if (newProject.value) {
-      this.projects.push({
-        projectName: newProject.value,
-        taskList: []
-      });
-      newProject.value = '';
-    };
+
+  onProjectAdded = (project: Project): void => {
+    this.projectsList.push(project);
   };
 }

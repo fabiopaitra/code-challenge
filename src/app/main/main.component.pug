@@ -1,32 +1,11 @@
 .container(fxLayout='row' fxLayoutAlign='center')
   section(fxLayout='column' fxFlex=50 fxFlex.xs=90)
-    // PROJECT
-    .container 
-      mat-form-field(fxLayout='column' fxFlex=100)
-        mat-label Add a new project
-        input(matInput, [value]='newProject.value', #newProject, placeholder='Start typing...')    
-    button(mat-raised-button, color='primary', (click)='onAddProject(newProject)') Add project
-    
-    // CARD
-    mat-card.container(*ngFor='let project of projects; index as i')
-      mat-card-title {{ project.projectName }}
-      mat-card-content
-      mat-selection-list(*ngFor='let task of project.taskList')
-        mat-list-option((click)='onDeleteTask(task, project.taskList)') {{ task }}
-      mat-card-actions
-        mat-form-field.pl-20(fxLayout='column' fxFlex=60)
-          mat-label Add a new task
-          input(matInput, #newTask [value]='newTask.value' placeholder='Start typing...')    
-        button.ml-20(mat-mini-fab, color='primary', (click)='onAddTask(newTask, project)')
-          mat-icon add
-        button.ml-20(mat-mini-fab, color='secondary')
-          mat-icon create
-        button.ml-20(mat-mini-fab, color='error')
-          mat-icon delete
+    project-create((projectCreated)='onProjectAdded($event)' )
+    project-list([projects]='projectsList')
 
 
 
       
 
 
-    
+     

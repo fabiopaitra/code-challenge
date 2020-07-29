@@ -1,0 +1,15 @@
+mat-card.container(*ngFor='let project of projects; index as i')
+  mat-card-title {{ project.projectName }}
+  mat-card-content
+    mat-selection-list(*ngFor='let task of project.tasksList; index as idx')
+      mat-list-option {{ task.taskName }}
+    mat-card-actions
+      mat-form-field.pl-20(fxLayout='column' fxFlex=60)
+        mat-label Add a new task
+        input(matInput, [(ngModel)]='enteredTask'  placeholder='Start typing...')    
+      button.ml-20(mat-mini-fab, color='primary', (click)='onAddTask(i)')
+        mat-icon add
+      button.ml-20(mat-mini-fab, color='secondary')
+        mat-icon create
+      button.ml-20(mat-mini-fab, color='error')
+        mat-icon delete
