@@ -1,8 +1,9 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { Project } from '../project.model';
+import { Project, Task } from '../project.model';
 import { NgForm } from '@angular/forms';
 import { ProjectsService } from '../projects.service';
 import { Subscription } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'project-list',
@@ -13,10 +14,11 @@ import { Subscription } from 'rxjs';
 export class ProjectListComponent implements OnInit {
   projects: Project[] = [];
   private projectsSub: Subscription;
-  constructor(public projectsService: ProjectsService) { }
+  constructor(public projectsService: ProjectsService, private http: HttpClient) { }
+
 
   ngOnInit(): void {
-    this.projects = this.projectsService.getProjects();
+    this.projectsService.getProjects();
     this.projectsSub = this.projectsService.getProjectsUpdatedListener()
       .subscribe((projects: Project[]) => {
         this.projects = projects;
@@ -29,11 +31,15 @@ export class ProjectListComponent implements OnInit {
 
   onAddTask = (form: NgForm, i: number): void => {
     if (form.invalid) return;
-    const task = {
+    const task: Task = {
+      id: 'asdasdasd',
       taskName: form.value.taskName,
       startDate: new Date()
     };
-    this.projects[i].tasksList.push(task);
+    this.http.post<{ message: string; }>('http://localhost:3000/api/tasks', task).subscribe((responseData) => {
+      console.log(responseData.message);
+      this.projects[i].tasksList.push(task);
+    });
     form.resetForm();
   };
 

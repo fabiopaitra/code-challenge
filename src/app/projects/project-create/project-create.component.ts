@@ -14,7 +14,7 @@ export class ProjectCreateComponent {
 
   onAddProject = (form: NgForm) => {
     if (form.invalid) return;
-    this.projectsService.addProjects(form.value.projectName);
+    this.projectsService.addProject(form.value.projectName);
     form.resetForm();
 
   };
